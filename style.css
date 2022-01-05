@@ -7,3 +7,32 @@ body {
     margin: 0;
 }
 
+.shop {
+    border: 2px solid gray;
+    height: 500px;
+
+}
+
+.d-flex {
+    display: flex;
+}
+
+.grow1 {
+    flex: 1;
+}
+
+.card {
+    height: 80px;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.card img {
+    height: 100%;
+}
+
+.shopItems {
+    height: 95%;
+    overflow: auto;
+}
