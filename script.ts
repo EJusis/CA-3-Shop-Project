@@ -1,4 +1,12 @@
-const items = [
+interface productInt {
+    name: string,
+    photo: string,
+    weight: number,
+    price: number,
+    category: string
+}
+
+const items: productInt[] = [
     {
         name: "Milk",
         photo: "https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Glass-and-bottle-of-milk-fe0997a.jpg?quality=90&resize=960,872",
@@ -66,16 +74,31 @@ const items = [
 
 const shopItems = document.querySelector(`.shopItems`)
 const ctgButtons = document.querySelectorAll(`button`)
+const stats = document.querySelectorAll(`h2`)
+const inventoryItems = document.querySelector(`.inventoryItems`)
 
-function cardClicked() {
-    console.log(`asdasd`)
+let money = 200
+let weight = 50
+
+
+
+function cardClicked(name) {
+    const flt = items.find(x => x.name === name)!
+    if(flt.price <= money && flt.weight <= weight) {
+        money -= flt.price
+        weight -= flt.weight
+        stats[0].innerText = `Money: ` + money.toFixed(2)
+        stats[1].innerText = `Weight: ` + weight.toFixed(2)
+        const card = createCardDiv(flt)
+        inventoryItems.appendChild(card)
+    }
 }
 
 function createCardDiv (item) {
     const card = document.createElement(`div`)
     card.classList.add(`card`)
     card.classList.add(`d-flex`)
-    card.onclick = cardClicked
+    card.onclick = () => cardClicked(item.name)
 
     const img = document.createElement(`img`)
     img.src = item.photo

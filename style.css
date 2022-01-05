@@ -40,4 +40,10 @@ body {
 .inventory {
     border: 2px solid gray;
     height: 500px;
+
+}
+
+.inventoryItems {
+    height: 85%;
+    overflow: auto;
 }

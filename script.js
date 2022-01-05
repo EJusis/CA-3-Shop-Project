@@ -66,14 +66,26 @@ const items = [
 ];
 const shopItems = document.querySelector(`.shopItems`);
 const ctgButtons = document.querySelectorAll(`button`);
-function cardClicked() {
-    console.log(`asdasd`);
+const stats = document.querySelectorAll(`h2`);
+const inventoryItems = document.querySelector(`.inventoryItems`);
+let money = 200;
+let weight = 50;
+function cardClicked(name) {
+    const flt = items.find(x => x.name === name);
+    if (flt.price <= money && flt.weight <= weight) {
+        money -= flt.price;
+        weight -= flt.weight;
+        stats[0].innerText = `Money: ` + money.toFixed(2);
+        stats[1].innerText = `Weight: ` + weight.toFixed(2);
+        const card = createCardDiv(flt);
+        inventoryItems.appendChild(card);
+    }
 }
 function createCardDiv(item) {
     const card = document.createElement(`div`);
     card.classList.add(`card`);
     card.classList.add(`d-flex`);
-    card.onclick = cardClicked;
+    card.onclick = () => cardClicked(item.name);
     const img = document.createElement(`img`);
     img.src = item.photo;
     const name = document.createElement(`h3`);
