@@ -65,6 +65,7 @@ const items = [
 ]
 
 const shopItems = document.querySelector(`.shopItems`)
+const ctgButtons = document.querySelectorAll(`button`)
 
 function cardClicked() {
     console.log(`asdasd`)
@@ -92,8 +93,9 @@ function createCardDiv (item) {
     return card
 }
 
-function showItems () {
-    for (const product of items) {
+function showItems (products) {
+    shopItems.innerHTML = ""
+    for (const product of products) {
         const divGenerated = createCardDiv(product)
         shopItems.appendChild(divGenerated)
     }
@@ -102,4 +104,34 @@ function showItems () {
     // })
 }
 
-showItems()
+showItems(items)
+
+
+const showCategory = (ctg) => {
+    const filteredItems = items.filter(x => x.category === ctg)
+    showItems(filteredItems)
+}
+
+ctgButtons[0].onclick = () => showCategory(`food`)
+ctgButtons[1].onclick = () => showCategory(`electronics`)
+ctgButtons[2].onclick = () => showCategory(`furniture`)
+ctgButtons[3].onclick = () => showItems(items)
+
+
+// PIRMAS BUDAS Filtruoti item'us
+// ctgButtons[0].onclick = () => {
+//     const filteredItems = items.filter(x => x.category === "food")
+//     showItems(filteredItems)
+// }
+//
+// ctgButtons[1].onclick = () => {
+//     const filteredItems = items.filter(x => x.category === "electronics")
+//     showItems(filteredItems)
+// }
+//
+// ctgButtons[2].onclick = () => {
+//     const filteredItems = items.filter(x => x.category === "furniture")
+//     showItems(filteredItems)
+// }
+//
+// ctgButtons[3].onclick = () => showItems(items)
